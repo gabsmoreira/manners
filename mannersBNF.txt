@@ -1,0 +1,23 @@
+Dear computer, please help me out with the following code
+
+
+
+*FUNCTION*
+
+computer, the function called <function name> will receive (<args>) and return <return type>, whenever I call
+it, please do {
+    <inside function>
+}
+
+*VARIABLE*
+
+<variable> please store <value>
+
+
+*CONDITION*
+
+please do this {<inside if>} if the following condition is true (<condition>)
+
+
+*LOOP*
+could you please do {<inside while>} while the following condition is true (<condition>)?
