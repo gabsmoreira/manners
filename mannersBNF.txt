@@ -1,23 +1,22 @@
-Dear computer, please help me out with the following code
+<expr> ::= please store <term> "+" <expr>
+         |  <term>
+
+ <term> ::=please store <factor> "*" <term>
+         |  <factor>
+
+ <factor> ::=please store "(" <expr> ")"
+           |  <const>
+
+ <const> ::please store integer
 
 
 
-*FUNCTION*
+ <while loop> ::= could you please do {<statement>} while the following condition is true (<condition>)?
 
-computer, the function called <function name> will receive (<args>) and return <return type>, whenever I call
-it, please do {
-    <inside function>
-}
-
-*VARIABLE*
-
-<variable> please store <value>
+ <function-definition> ::=  computer, the function called <function name> will receive (<args>) and return <return type>, whenever I call
+                            it, please do {statement>}
 
 
-*CONDITION*
+<if-statement>::= please do this {<statement>} if the following condition is true (<condition>)
+                  else{<else-statement>}
 
-please do this {<inside if>} if the following condition is true (<condition>)
-
-
-*LOOP*
-could you please do {<inside while>} while the following condition is true (<condition>)?
