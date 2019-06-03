@@ -5,7 +5,7 @@ from SymbolTable import SymbolTable
 import sys
 
 # file_name = sys.argv[1]
-file_name = 'program.vbs'
+file_name = 'program2.vbs'
 
 # file_name = 'program.vbs'
 

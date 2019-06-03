@@ -32,6 +32,6 @@ computer, the void called countdown will receive (a as integer), whenever I call
 
 
 computer, the void called main will receive (), whenever I call it, please do {
-    print fibonacci(9)
-    call countdown(8)
+    please print fibonacci(9)
+    please call countdown(8)
 }

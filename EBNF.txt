@@ -1,0 +1,9 @@
+Program = "computer", ",", "the",  SubDec|FuncDec;
+SubDec = "void", "called", "identifier", "will", "receive", "(", { | ("identifier", as, Type)}, ")", ",", "whenever", "I", "call", "it", "please", "do", "{", { | ( Statement, "\n")}, "}";
+FuncDec = "function", "called", "identifier", "will", "receive", "(", { | ("identifier", as, Type)}, ")", "and", "return",  Type, ",", "whenever", "I", "call", "it", "please", "do", "{", { | ( Statement, "\n")}, "}";
+RelExpression = Expression, {"=" | ">" | "<"}, Expression;
+Expression = Term, {("+" | "-" | "or"),Term | ;
+Term = Factor, {("*" | "/" | "and"), Factor} | ;
+Factor = "number" | {"boolean" | ("identifier",{| {"("{(| RelExpression, {| ","})}}}) | {("+" | "-" | "not"), Factor} | "(", RelExpression, ")" | "input";
+Statement = |("please", "change", "the", "value", "of", "identifier", "to", RelExpression ) | ("please", "print", RelExpression) | ("please", "store", "identifier", "as",  Type) | "please", "do", "this", "{", {| (Statement, "\n"), "}", "if", "the", "following", "condition", "is", "true" "(", RelExpression, ")", {| ("else", "{", {| (Statement, "\n")}}, "}") | ("please", "call", "identifier", "(", {| {RelExpression, {| ","}}) | ("could", "you", "please", "do", "this", "{", |(Statement, "\n"),"}", "while", "the", "following", "condition", "is", "true", "{",  RelExpression, "}", "?"));
+Type = "integer"|"boolean"

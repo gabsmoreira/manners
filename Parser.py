@@ -478,6 +478,11 @@ class Parser:
                 var_type = Parser.parse_type()
                 return VarDec('value', [var_id, var_type])
             
+            elif Parser.tokens.actual.type == 'PRINT':
+                Parser.tokens.select_next()
+                value = Parser.parse_rel_expression()
+                return Print('PRINT',[value])
+            
             elif Parser.tokens.actual.type == 'CHANGE':
                 Parser.tokens.select_next()
 
@@ -619,37 +624,39 @@ class Parser:
                     Parser.tokens.select_next()
 
                 return If('if', children_if)
+                
+            elif Parser.tokens.actual.type == 'CALL':
+                Parser.tokens.select_next()
+
+                if Parser.tokens.actual.type != 'VAR':
+                    raise Exception(f'Expected identifier after CALL in line {Parser.tokens.line}')
+                identifier = Parser.tokens.actual.value
+                Parser.tokens.select_next()
+
+                if Parser.tokens.actual.type != 'OPENPAR':
+                    raise Exception(f'Expected OPENPAR after CALL in line {Parser.tokens.line}')
+                Parser.tokens.select_next()
+
+                rel_express = []
+                one_arg = True
+                while Parser.tokens.actual.type != 'CLOSEPAR':
+                    if one_arg == False:
+                        if Parser.tokens.actual.type != 'COMMA':
+                            raise Exception(f'Expected COMMA after CALL in line {Parser.tokens.line}')
+                        Parser.tokens.select_next()
+
+                    rel_express.append(Parser.parse_rel_expression())
+
+                    one_arg = False
+                            
+                Parser.tokens.select_next()
+                return FunCall(identifier, rel_express)
 
             else:
                 raise Exception(f'Unexpected token got {Parser.tokens.actual.value}')
                 
 
-        elif Parser.tokens.actual.type == 'CALL':
-            Parser.tokens.select_next()
-
-            if Parser.tokens.actual.type != 'VAR':
-                raise Exception(f'Expected identifier after CALL in line {Parser.tokens.line}')
-            identifier = Parser.tokens.actual.value
-            Parser.tokens.select_next()
-
-            if Parser.tokens.actual.type != 'OPENPAR':
-                raise Exception(f'Expected OPENPAR after CALL in line {Parser.tokens.line}')
-            Parser.tokens.select_next()
-
-            rel_express = []
-            one_arg = True
-            while Parser.tokens.actual.type != 'CLOSEPAR':
-                if one_arg == False:
-                    if Parser.tokens.actual.type != 'COMMA':
-                        raise Exception(f'Expected COMMA after CALL in line {Parser.tokens.line}')
-                    Parser.tokens.select_next()
-
-                rel_express.append(Parser.parse_rel_expression())
-
-                one_arg = False
-                        
-            Parser.tokens.select_next()
-            return FunCall(identifier, rel_express)
+            
         
         elif Parser.tokens.actual.type == 'IF':
             children_if = []
